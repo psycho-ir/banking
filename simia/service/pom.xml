@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>service</artifactId>
+        <groupId>com.samenea</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.samenea.banking.simia</groupId>
+    <artifactId>banking-simia-service</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.samenea.banking</groupId>
+            <artifactId>spec</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.samenea.banking.simia</groupId>
+            <artifactId>banking-simia-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.samenea.banking.simia</groupId>
+            <artifactId>banking-simia-repository-jdbc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.behestan</groupId>
+            <artifactId>SimiaErrorHandler</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+
+    <properties>
+        <banking.jdbc.driverClassName>oracle.jdbc.OracleDriver</banking.jdbc.driverClassName>
+        <banking.jdbc.url>${simia.jdbc.url}</banking.jdbc.url>
+        <banking.jdbc.username>${simia.jdbc.username}</banking.jdbc.username>
+        <banking.jdbc.password>${simia.jdbc.password}</banking.jdbc.password>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/log4j.xml</exclude>
+                    <exclude>contexts-banking/datasource.xml</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/log4j.xml</include>
+                    <include>contexts-banking/datasource.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjrt</artifactId>
+                        <version>1.6.12</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>1.6.12</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <complianceLevel>1.6</complianceLevel>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aspects</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

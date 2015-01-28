@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>banking</artifactId>
+        <groupId>com.samenea.banking</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.samenea.banking</groupId>
+    <artifactId>simia</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>model</module>
+        <module>repository-jdbc</module>
+        <module>service</module>
+    </modules>
+    <properties>
+        <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
+        <jdbc.url>${simia.jdbc.url}</jdbc.url>
+        <jdbc.username>${simia.jdbc.username}</jdbc.username>
+        <jdbc.password>${simia.jdbc.password}</jdbc.password>
+    </properties>
+
+
+
+</project>
